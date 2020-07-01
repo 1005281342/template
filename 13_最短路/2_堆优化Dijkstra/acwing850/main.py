@@ -23,6 +23,7 @@ hq = [(0, 1)]  # (和起点的距离, 第几个点)
 heapq.heapify(hq)
 
 while hq:
+    # 优先处理边距短的点
     dis, node = heapq.heappop(hq)
     if st[node]:
         continue
