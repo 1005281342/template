@@ -22,7 +22,7 @@ for i in range(m):
 #  如果第n次迭代仍然会松弛三角不等式，就说明存在一条长度是n+1的最短路径，
 #  由抽屉原理，路径中至少存在两个相同的点，说明图中存在负权回路。
 for _ in range(n):
-    backup = copy(edges)
+    backup = copy(dist)
     for i in range(m):
         a, b, w = edges[i]
         dist[b] = min(dist[b], backup[a] + w)

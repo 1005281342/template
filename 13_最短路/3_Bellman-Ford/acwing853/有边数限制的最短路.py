@@ -20,7 +20,7 @@ for i in range(m):
     edges[i] = [int(x) for x in input().split(" ")]
 
 for _ in range(k):
-    backup = copy(edges)
+    backup = copy(dist)
     for i in range(m):
         a, b, w = edges[i]
         dist[b] = min(dist[b], backup[a] + w)
