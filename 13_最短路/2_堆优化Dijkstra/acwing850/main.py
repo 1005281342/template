@@ -2,7 +2,7 @@
 import heapq
 from collections import defaultdict
 
-# 当点的数量n >= 边的数量m时 为稀疏图 使用堆优化Dijkstra
+# 当点的数量n**2 >= 边的数量m时 为稀疏图 使用堆优化Dijkstra
 n, m = [int(x) for x in input().split(" ")]
 
 dd = defaultdict(set)
