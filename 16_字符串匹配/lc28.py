@@ -4,7 +4,7 @@ class Solution:
 
         if haystack == needle:
             return 0
-        return self.BM(haystack, needle)
+        return self.KMP(haystack, needle)
 
     # 暴力做法
     def BF(self, haystack: str, needle: str) -> int:
@@ -82,6 +82,39 @@ class Solution:
             move = bad.get(haystack[i + j], -1)  # 坏字符匹配，将needle字符串后移到坏字符出现的位置，若无，则到第一位
             i += max(good[j], j - move)
         return -1
+
+    # KMP算法
+    def KMP(self, haystack: str, needle: str) -> int:
+
+        # 计算next数组
+        ne = [0] * len(needle)
+        if len(needle) > 0:
+            ne[0] = -1
+
+        i = 2
+        j = 0
+        while i < len(needle):
+            if needle[i - 1] == needle[j]:
+                j += 1
+                ne[i] = j
+                i += 1
+            elif j > 0:
+                j = ne[j]
+            else:
+                ne[i] = 0
+                i += 1
+
+        # 匹配
+        i = j = 0
+        while i < len(haystack) and j < len(needle):
+            if haystack[i] == needle[j]:
+                i += 1
+                j += 1
+            elif ne[j] == -1:
+                i += 1
+            else:
+                j = ne[j]
+        return i - j if j == len(needle) else -1
 
 
 if __name__ == '__main__':
